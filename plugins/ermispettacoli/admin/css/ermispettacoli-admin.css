@@ -1,0 +1,162 @@
+/**
+ * All of the CSS for your admin-specific functionality should be
+ * included in this file.
+ */
+
+.nuovo-spettacolo_page_all_ermispettacoli_page .form-table th[scope="row"] {
+	display: none;
+}
+.nuovo-spettacolo_page_all_ermispettacoli_page .table th[scope="col"] {
+	padding-left: 10px;
+}
+.alert-success {
+	padding: 1rem;
+    border: 2px solid #5fd35f;
+    background: rgba(30, 195, 30, .5);
+    border-radius: 5px;
+    color: #fff;
+    font-size: 17px;
+    margin: 5px;
+    width: 30%;
+    text-align: center;
+    right: 0;
+    position: absolute;
+    top: 30px;
+}
+.edit-show {
+	display: flex !important;
+	align-items: center;
+}
+
+.toplevel_page_new_ermispettacoli_page h3 {color: #19647E;}
+
+.sec-att ~ table tbody {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+}
+
+.sec-att ~ table tbody .es_cognome_tr {
+	margin-left: 30px;
+	margin-right: 30px;
+}
+
+.sec-att ~ table tbody .es_personaggio_attivita_tr {
+	margin-left: 30px;
+}
+
+.sec-att ~ table tbody tr {
+	display: flex;
+	flex-direction: column;
+}
+
+/*.sec-att ~ table tbody tr:last-child {
+    width: 330px;
+}*/
+
+.form-table th {
+	width: auto;
+}
+
+form .form-table:nth-child(3) tbody tr:last-child {
+	width: 400px;
+}
+
+.sec-att ~ table tbody tr:last-child th {
+	width: 100%;
+}
+
+.sec-att ~ table tbody tr th {
+	padding: 0;
+	padding-bottom: 8px;
+}
+
+.sec-att ~ table tbody tr td {
+	padding: 0;
+}
+
+.sec-att ~ table tbody tr:last-child td button {margin-left: 30px;}
+.sec-att ~ table tbody tr:last-child td button span {display: flex;}
+
+.box-alert-inputs {
+	color: red;
+}
+.form-table .obbl {
+	color: #c71515 !important;
+	font-size: 13px !important;
+}
+.spettacoli_page_all_ermispettacoli_page table.form-table > tbody > tr > th {display:none;}
+.spettacoli_page_all_ermispettacoli_page table.form-table > tbody > tr > td {
+	padding-left:0;
+	padding-right: 30px;
+}
+.spettacoli_page_all_ermispettacoli_page .wp-list-table.widefat.striped.table-view-list td {
+	vertical-align: top;
+	padding: 15px 10px 15px 0;
+}
+.spettacoli_page_all_ermispettacoli_page .wp-list-table.widefat.striped.table-view-list th:first-child,
+.spettacoli_page_all_ermispettacoli_page .wp-list-table.widefat.striped.table-view-list td:first-child {
+	vertical-align: top;
+	padding-left: 15px;
+}
+
+.d-no {display: none;}
+.m-b {margin-bottom: -30px;}
+
+.es_characters_list{width:380px}
+.toplevel_page_new_ermispettacoli_page ol{
+	
+}
+.es_characters_list ol {
+	padding-left: 0;
+	margin-left: 0;
+}
+.es_characters_list li {display: inline-block}
+.es_characters_list li ~ a {
+    width: 22px;
+    min-height: 20px !important;
+    display: inline-flex !important;
+    justify-content: center;
+    align-items: center;
+	vertical-align: text-bottom !important;
+}
+.es_characters_list li ~ a span {
+    font-size: 16px;
+    display: inline-flex !important;
+    justify-content: center;
+    align-items: center;
+}
+.es_characters_list button.button {
+    margin: 0 !important;
+    padding: 0 !important;
+    border-radius: 3px;
+	min-height: auto;
+}
+.es_characters_list button.button.edit-char {
+    border: 1px solid dodgerblue;
+}
+.es_characters_list button.button.delete-char {
+    border: 1px solid #FF4747;
+}
+.es_characters_list button.button.edit-char span,
+.es_characters_list button.button.delete-char span {
+    align-items: center;
+    justify-content: center;
+}
+.es_characters_list button.button.edit-char span:before {
+    color: dodgerblue;
+	font-size: 16px;
+}
+.es_characters_list button.button.delete-char span:before {
+    color: #FF4747;
+	font-size: 16px;
+}
+.modal.fade.show[id^=charEdit] .modal-dialog,
+.modal.fade.show[id^=charDelete] .modal-dialog {margin-top:60px}
+
+.showshows {
+	padding: 0 8px;
+    line-height: 2.3;
+    border-radius: 4px;
+    width: 100%;
+}
