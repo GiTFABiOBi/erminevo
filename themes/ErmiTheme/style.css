@@ -3,7 +3,7 @@ Theme Name: ErmiTheme
 Description: Tema Customizzato per Compagnia Teatrale basato sul tema Genesis.
 Author: Fabio Basile
 
-Version: 5.5.34
+Version: 5.5.35
 
 Tags: accessibility-ready, block-styles, custom-colors, custom-logo, custom-menu, editor-style, featured-images, footer-widgets, full-width-template, left-sidebar, one-column, right-sidebar, rtl-language-support, sticky-post, theme-options, threaded-comments, translation-ready, two-columns, wide-blocks
 
@@ -2987,11 +2987,9 @@ button.carousel-control-prev:active {
 }
 
 .slider {
-  margin: auto;
-  height: 100%;
-  overflow: hidden;
-	overflow-x: scroll;
-
+	margin: auto;
+	height: 100%;
+	overflow: hidden;
 }
 
 .slider-inside {
@@ -3483,6 +3481,12 @@ a:active, a:focus {
 		border-top-left-radius: 4px;
 		border-top-right-radius: 15px;
 		border-bottom-right-radius: 8px;
+	}
+}
+
+@media screen and (max-width: 1399px) {
+	.slider {
+		overflow-x: scroll;
 	}
 }
 
