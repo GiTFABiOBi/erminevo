@@ -394,6 +394,26 @@ class Mailer extends MailerAbstract {
 	}
 
 	/**
+	 * Get the error code from the Resend API response.
+	 *
+	 * @since 4.8.0
+	 *
+	 * @return string
+	 */
+	public function get_response_error_code() {
+
+		if ( ! empty( $this->response ) ) {
+			$body = wp_remote_retrieve_body( $this->response );
+
+			if ( ! empty( $body->name ) ) {
+				return $body->name;
+			}
+		}
+
+		return parent::get_response_error_code();
+	}
+
+	/**
 	 * Whether the mailer has all its settings correctly set up and saved.
 	 *
 	 * @since 4.7.0
@@ -424,7 +444,7 @@ class Mailer extends MailerAbstract {
 		$options = $this->connection_options->get_group( $this->mailer );
 
 		$text[] = '<strong>' . esc_html__( 'API Key:', 'wp-mail-smtp' ) . '</strong> ' .
-		          ( ! empty( $options['api_key'] ) ? 'Yes' : 'No' );
+		          ( ! empty( $options['api_key'] ) ? esc_html__( 'Yes', 'wp-mail-smtp' ) : esc_html__( 'No', 'wp-mail-smtp' ) );
 
 		return implode( '<br>', $text );
 	}

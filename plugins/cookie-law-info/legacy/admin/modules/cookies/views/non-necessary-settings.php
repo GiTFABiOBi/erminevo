@@ -18,6 +18,7 @@ if ( ! defined( 'WPINC' ) ) {
 	var cli_error_message = '<?php echo esc_html__( 'Unable to update Settings.', 'cookie-law-info' ); ?>';
 </script>
 <div class="wrap">
+	<?php include_once CLI_PLUGIN_PATH . 'admin/partials/wt-cli-update-banner.php'; ?>
 	<div class="cookie-law-info-form-container">
 		<div class="cli-plugin-toolbar top">
 			<h3><?php echo esc_html__( 'Non-necessary Cookie Settings', 'cookie-law-info' ); ?></h3>
@@ -59,7 +60,7 @@ if ( ! defined( 'WPINC' ) ) {
 				<tr>
 					<td>
 						<label for="thirdparty_head_section"><?php echo esc_html__( 'This script will be added to the page HEAD section if the above settings is enabled and user has give consent.', 'cookie-law-info' ); ?></label>
-						<textarea name="thirdparty_head_section" class="vvv_textbox">
+						<textarea name="thirdparty_head_section" class="vvv_textbox"<?php echo current_user_can( 'unfiltered_html' ) ? '' : ' readonly'; ?>>
 							<?php
 							echo apply_filters( 'format_to_edit', stripslashes( $settings['head_scripts'] ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 							?>
@@ -73,7 +74,7 @@ if ( ! defined( 'WPINC' ) ) {
 				<tr>
 					<td>
 						<label for="thirdparty_body_section"><?php echo esc_html__( 'This script will be added right after the BODY section if the above settings is enabled and user has given consent.', 'cookie-law-info' ); ?></label>
-						<textarea name="thirdparty_body_section" class="vvv_textbox">
+						<textarea name="thirdparty_body_section" class="vvv_textbox"<?php echo current_user_can( 'unfiltered_html' ) ? '' : ' readonly'; ?>>
 							<?php
 							echo apply_filters( 'format_to_edit', stripslashes( $settings['body_scripts'] ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 							?>

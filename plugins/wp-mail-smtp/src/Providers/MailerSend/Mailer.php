@@ -420,6 +420,36 @@ class Mailer extends MailerAbstract {
 	}
 
 	/**
+	 * Get the error code from the MailerSend API response.
+	 *
+	 * @since 4.8.0
+	 *
+	 * @return string
+	 */
+	public function get_response_error_code() {
+
+		if ( ! empty( $this->response ) ) {
+			$body = wp_remote_retrieve_body( $this->response );
+
+			// Extract #MS error reference code from message (e.g. #MS42207).
+			if ( ! empty( $body->message ) && preg_match( '/#(MS\d+)/', $body->message, $matches ) ) {
+				return $matches[1];
+			}
+
+			// Fall back to first error field key (e.g. "from.email").
+			if ( ! empty( $body->errors ) && is_object( $body->errors ) ) {
+				$keys = array_keys( (array) $body->errors );
+
+				if ( ! empty( $keys[0] ) ) {
+					return $keys[0];
+				}
+			}
+		}
+
+		return parent::get_response_error_code();
+	}
+
+	/**
 	 * Get formatted error message from response body.
 	 *
 	 * @since 4.5.0
@@ -491,7 +521,7 @@ class Mailer extends MailerAbstract {
 
 		$mailersend = $this->connection_options->get_group( $this->mailer );
 
-		$text[] = '<strong>Api Key:</strong> ' . ( ! empty( $mailersend['api_key'] ) ? 'Yes' : 'No' );
+		$text[] = '<strong>' . esc_html__( 'API Key:', 'wp-mail-smtp' ) . '</strong> ' . ( ! empty( $mailersend['api_key'] ) ? esc_html__( 'Yes', 'wp-mail-smtp' ) : esc_html__( 'No', 'wp-mail-smtp' ) );
 
 		return implode( '<br>', $text );
 	}

@@ -426,6 +426,44 @@ class Mailer extends MailerAbstract {
 	}
 
 	/**
+	 * Get the error code from the Mandrill API response.
+	 *
+	 * @since 4.8.0
+	 *
+	 * @return string
+	 */
+	public function get_response_error_code() { // phpcs:ignore Generic.Metrics.CyclomaticComplexity.TooHigh
+
+		if ( ! empty( $this->response ) ) {
+			$body = wp_remote_retrieve_body( $this->response );
+
+			// Array response with reject_reason.
+			if ( is_array( $body ) && ! empty( $body[0] ) && is_object( $body[0] ) ) {
+				if ( ! empty( $body[0]->reject_reason ) ) {
+					return $body[0]->reject_reason;
+				}
+
+				if ( ! empty( $body[0]->status ) ) {
+					return $body[0]->status;
+				}
+			}
+
+			// Object response with error name/code.
+			if ( is_object( $body ) ) {
+				if ( ! empty( $body->name ) ) {
+					return $body->name;
+				}
+
+				if ( ! empty( $body->code ) ) {
+					return $body->code;
+				}
+			}
+		}
+
+		return parent::get_response_error_code();
+	}
+
+	/**
 	 * Get mailer debug information that is helpful during support.
 	 *
 	 * @since 4.6.0
@@ -437,7 +475,7 @@ class Mailer extends MailerAbstract {
 		$options = $this->connection_options->get_group( $this->mailer );
 
 		$text[] = '<strong>' . esc_html__( 'API Key:', 'wp-mail-smtp' ) . '</strong> ' .
-							( ! empty( $options['api_key'] ) ? 'Yes' : 'No' );
+							( ! empty( $options['api_key'] ) ? esc_html__( 'Yes', 'wp-mail-smtp' ) : esc_html__( 'No', 'wp-mail-smtp' ) );
 
 		return implode( '<br>', $text );
 	}

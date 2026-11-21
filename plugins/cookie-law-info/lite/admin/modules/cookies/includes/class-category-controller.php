@@ -102,7 +102,7 @@ class Category_Controller extends Base_Controller {
 			visibility int(11) NOT NULL default 1,
 			priority int(11) NOT NULL default 0,
 			sell_personal_data int(11) NOT NULL default 0,
-			meta longtext NULL, 
+			meta longtext NULL,
 			date_created datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
 			date_modified datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
 			PRIMARY KEY (category_id),
@@ -182,8 +182,6 @@ class Category_Controller extends Base_Controller {
 				'%d',
 				'%d',
 				'%s',
-				'%d',
-				'%s',
 				'%s',
 				'%s',
 			)
@@ -200,6 +198,8 @@ class Category_Controller extends Base_Controller {
 	 */
 	public function update_item( $object ) {
 		global $wpdb;
+		$date_modified = current_time( 'mysql' );
+		$object->set_date_modified( $date_modified );
 		$wpdb->update( // phpcs:ignore WordPress.DB.DirectDatabaseQuery
 			$wpdb->prefix . 'cky_cookie_categories',
 			array(
@@ -221,8 +221,6 @@ class Category_Controller extends Base_Controller {
 				'%d',
 				'%d',
 				'%d',
-				'%d',
-				'%s',
 				'%d',
 				'%s',
 				'%s',

@@ -471,6 +471,26 @@ class Mailer extends MailerAbstract {
 	}
 
 	/**
+	 * Get the error code from the SparkPost API response.
+	 *
+	 * @since 4.8.0
+	 *
+	 * @return string
+	 */
+	public function get_response_error_code() {
+
+		if ( ! empty( $this->response ) ) {
+			$body = wp_remote_retrieve_body( $this->response );
+
+			if ( ! empty( $body->errors ) && is_array( $body->errors ) && ! empty( $body->errors[0]->code ) ) {
+				return $body->errors[0]->code;
+			}
+		}
+
+		return parent::get_response_error_code();
+	}
+
+	/**
 	 * Get mailer debug information, that is helpful during support.
 	 *
 	 * @since 3.2.0
@@ -482,9 +502,9 @@ class Mailer extends MailerAbstract {
 		$options = $this->connection_options->get_group( $this->mailer );
 
 		$text[] = '<strong>' . esc_html__( 'API Key:', 'wp-mail-smtp' ) . '</strong> ' .
-							( ! empty( $options['api_key'] ) ? 'Yes' : 'No' );
+							( ! empty( $options['api_key'] ) ? esc_html__( 'Yes', 'wp-mail-smtp' ) : esc_html__( 'No', 'wp-mail-smtp' ) );
 		$text[] = '<strong>' . esc_html__( 'Region:', 'wp-mail-smtp' ) . '</strong> ' .
-							( ! empty( $options['region'] ) ? 'Yes' : 'No' );
+							( ! empty( $options['region'] ) ? esc_html__( 'Yes', 'wp-mail-smtp' ) : esc_html__( 'No', 'wp-mail-smtp' ) );
 
 		return implode( '<br>', $text );
 	}

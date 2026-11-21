@@ -94,6 +94,7 @@ class Connect_Banner extends Modules {
 					.cky-connect-button {
 						padding: 7px 58px 7px 62px;
 						line-height: normal;
+						min-height: 30px;
 					}
 				}
 			</style>

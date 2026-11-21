@@ -61,7 +61,7 @@ class Review_Feedback extends Modules {
 	 */
 	public function add_notice() {
 		global $pagenow;
-		
+
 		// Only show on plugins page
 		if ( 'plugins.php' !== $pagenow ) {
 			return;
@@ -82,18 +82,17 @@ class Review_Feedback extends Modules {
 			return;
 		}
 
-		$plugin_dir_url = defined( 'CKY_PLUGIN_URL' ) ? CKY_PLUGIN_URL : trailingslashit( site_url() );
-		$assets_path    = $plugin_dir_url . 'admin/dist/img/';
+		$logo_url = plugin_dir_url( __FILE__ ) . 'assets/logo.svg';
 		?>
 		<div class="cky-notice-review cky-admin-notice cky-admin-notice-default is-dismissible">
 			<div class="cky-admin-notice-content">
 				<div class="cky-admin-notice-message">
 					<div class="cky-row cky-align-center">
 						<div class="cky-col-12">
-							<h4 class="cky-admin-notice-header"><img width="100" src="<?php echo esc_url( $assets_path . 'logo.svg' ); ?>" alt="<?php esc_attr_e( 'CookieYes Logo', 'cookie-law-info' ); ?>"></h4> <?php //phpcs:ignore PluginCheck.CodeAnalysis.ImageFunctions.NonEnqueuedImage ?>
-							<p style="margin-top: 15px; margin-bottom:5px;"><?php 
+							<h4 class="cky-admin-notice-header"><img width="100" src="<?php echo esc_url( $logo_url ); ?>" alt="<?php esc_attr_e( 'CookieYes Logo', 'cookie-law-info' ); ?>"></h4> <?php //phpcs:ignore PluginCheck.CodeAnalysis.ImageFunctions.NonEnqueuedImage ?>
+							<p style="margin-top: 15px; margin-bottom:5px;"><?php
 								/* translators: %1$s: opening bold tag, %2$s: closing bold tag */
-								echo wp_kses_post( sprintf( __( 'Hey, we at %1$s CookieYes %2$s would like to thank you for using our plugin. We would really appreciate if you could take a moment to drop a quick review that will inspire us to keep going.', 'cookie-law-info' ), '<b>', '</b>' ) ); 
+								echo wp_kses_post( sprintf( __( 'Hey, we at %1$s CookieYes %2$s would like to thank you for using our plugin. We would really appreciate if you could take a moment to drop a quick review that will inspire us to keep going.', 'cookie-law-info' ), '<b>', '</b>' ) );
 							?></p>
 						</div>
 						<div class="cky-col-12">
@@ -211,14 +210,14 @@ class Review_Feedback extends Modules {
 		if ( ! current_user_can( 'manage_options' ) ) {
 			return;
 		}
-		
+
 		// Only load script on plugins page
 		if ( 'plugins.php' !== $pagenow ) {
 			return;
 		}
 
-		$expiry = 60 * DAY_IN_SECONDS;
-		
+		$expiry = 30 * DAY_IN_SECONDS;
+
 		?>
 			<script type="text/javascript">
 				(function($) {
@@ -257,11 +256,11 @@ class Review_Feedback extends Modules {
 			<?php
 	}
 
-	function add_footer_review_link($footer_text) {
-		
+	public function add_footer_review_link( $footer_text ) {
+
 		// Check if we are on the CookieYes Dashboard page
 		$screen = get_current_screen();
-		if ($screen->id == 'toplevel_page_cookie-law-info') {
+		if ( $screen && $screen->id == 'toplevel_page_cookie-law-info' ) {
 			$link_text = esc_html__( 'Give us a 5-star rating!', 'cookie-law-info' );
 			$link1 = sprintf(
 				'<a class="cky-button-review" href="%1$s" target="_blank" title="%2$s">&#9733;&#9733;&#9733;&#9733;&#9733;</a>',

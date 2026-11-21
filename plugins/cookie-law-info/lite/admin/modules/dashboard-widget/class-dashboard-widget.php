@@ -36,29 +36,12 @@ class Dashboard_Widget extends Modules {
     protected $rest_base = '/dashboard-widget';
 
     /**
-     * Instance of the current class
-     *
-     * @var object
-     */
-    private static $instance;
-
-    /**
-     * Return the current instance of the class
-     *
-     * @return object
-     */
-    public static function get_instance() {
-        if ( null === self::$instance ) {
-            self::$instance = new self();
-        }
-        return self::$instance;
-    }
-
-    /**
      * Constructor.
+     *
+     * @param string $module_id Module identifier from admin loader.
      */
-    public function __construct() {
-        parent::__construct('dashboard_widget');
+    public function __construct( $module_id = 'dashboard_widget' ) {
+        parent::__construct( $module_id );
         add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
     }
 
@@ -134,8 +117,8 @@ class Dashboard_Widget extends Modules {
         <div class="cky-consent-chart-section">
             <div class="cky-consent-chart cky-blur">
                 <img 
-                    src="<?php echo esc_url( CKY_PLUGIN_URL . 'admin/dist/img/trends.png' ); ?>" 
-                    alt="Consent Trends Dummy Chart"
+                    src="<?php echo esc_url( plugin_dir_url( __FILE__ ) . 'assets/img/trends.svg' ); ?>" 
+                    alt="<?php esc_attr_e( 'Consent trends preview', 'cookie-law-info' ); ?>"
                     style="display:block;width:100%;height:auto;"
                 />
                 <div class="cky-modal-overlay">
@@ -192,6 +175,7 @@ class Dashboard_Widget extends Modules {
                 padding: 8px 16px;
                 line-height: normal;
                 font-size: 15px;
+                min-height: 30px;
             }
         </style>
         <?php
@@ -548,6 +532,3 @@ class Dashboard_Widget extends Modules {
         <?php
     }
 }
-
-// Initialize the widget module
-Dashboard_Widget::get_instance()->init(); 

@@ -258,9 +258,9 @@ class Uninstall_Feedback extends Modules {
 					<button class="button-primary cky-modal-submit">
 						<?php echo esc_html__( 'Submit & Deactivate', 'cookie-law-info' ); ?>
 					</button>
-					<a class="cky-goto-support" href="https://www.cookieyes.com/support/" target="_blank">
+					<a class="cky-goto-support" href="https://wordpress.org/support/plugin/cookie-law-info/#new-topic-0" target="_blank" rel="noopener noreferrer">
 						<span class="dashicons dashicons-external"></span>
-						<?php echo esc_html__( 'Go to support', 'cookie-law-info' ); ?>
+						<?php echo esc_html__( 'Having a problem? Ask on the support forum', 'cookie-law-info' ); ?>
 					</a>
 					<button class="button-secondary cky-modal-skip">
 						<?php echo esc_html__( 'Skip & Deactivate', 'cookie-law-info' ); ?>
@@ -329,6 +329,9 @@ class Uninstall_Feedback extends Modules {
 			.cky-modal-footer {
 				padding: 0px 20px 15px 20px;
 				display: flex;
+				flex-wrap: wrap;
+				align-items: center;
+				row-gap: 8px;
 			}
 
 			.cky-button-left {
@@ -365,7 +368,13 @@ class Uninstall_Feedback extends Modules {
 				text-decoration: none;
 				display: flex;
 				align-items: center;
-				margin-left: 15px;
+				margin-left: 12px;
+				font-size: 12px;
+				white-space: nowrap;
+			}
+
+			.cky-goto-support .dashicons {
+				flex-shrink: 0;
 			}
 
 			.cky-modal-footer .cky-modal-submit {
@@ -380,6 +389,7 @@ class Uninstall_Feedback extends Modules {
 				background: none;
 				border: none;
 				margin-left: auto;
+				padding: 0 0 0 12px;
 			}
 
 			.cky-modal-close {
@@ -507,18 +517,20 @@ class Uninstall_Feedback extends Modules {
 			wp_send_json_error();
 		}
 		$data = array(
-			'reason_slug'    => sanitize_text_field( wp_unslash( $request['reason_id'] ) ),
-			'reason_detail'  => ! empty( $request['reason_text'] ) ? sanitize_text_field( wp_unslash( $request['reason_text'] ) ) : null,
-			'date'           => gmdate( 'M d, Y h:i:s A' ),
-			'comments'       => ! empty( $request['reason_info'] ) ? sanitize_text_field( wp_unslash( $request['reason_info'] ) ) : null,
-			'server'         => ! empty( $_SERVER['SERVER_SOFTWARE'] ) ? sanitize_text_field( wp_unslash( $_SERVER['SERVER_SOFTWARE'] ) ) : null,
-			'php_version'    => phpversion(),
-			'mysql_version'  => $wpdb->db_version(),
-			'wp_version'     => get_bloginfo( 'version' ),
-			'wc_version'     => defined( 'WC_VERSION' ) ? WC_VERSION : null,
-			'locale'         => get_locale(),
-			'plugin_version' => $this->current_version,
-			'is_multisite'   => is_multisite(),
+			'reason_slug'        => sanitize_text_field( wp_unslash( $request['reason_id'] ) ),
+			'reason_detail'      => ! empty( $request['reason_text'] ) ? sanitize_text_field( wp_unslash( $request['reason_text'] ) ) : null,
+			'date'               => gmdate( 'M d, Y h:i:s A' ),
+			'comments'           => ! empty( $request['reason_info'] ) ? sanitize_text_field( wp_unslash( $request['reason_info'] ) ) : null,
+			'server'             => ! empty( $_SERVER['SERVER_SOFTWARE'] ) ? sanitize_text_field( wp_unslash( $_SERVER['SERVER_SOFTWARE'] ) ) : null,
+			'php_version'        => phpversion(),
+			'mysql_version'      => $wpdb->db_version(),
+			'wp_version'         => get_bloginfo( 'version' ),
+			'wc_version'         => defined( 'WC_VERSION' ) ? WC_VERSION : null,
+			'locale'             => get_locale(),
+			'plugin_version'     => $this->current_version,
+			'is_multisite'       => is_multisite(),
+			'install_source'     => cky_get_install_source(),
+			'activation_context' => cky_get_activation_context(),
 		);
 
 		$response = wp_remote_post(
