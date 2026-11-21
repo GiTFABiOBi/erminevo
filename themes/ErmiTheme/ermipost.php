@@ -21,14 +21,20 @@ get_header();
         $postID = url_to_postid($current_url);
         $rows = $wpdb->get_results("SELECT * FROM " . $wpdb->prefix . "posts WHERE ID = {$postID}", OBJECT);
         $autore = get_the_author_meta( 'display_name', $rows[0]->post_author);
-        echo '<div class="mb-3 post__container" style="background-image:url(\''.get_the_post_thumbnail_url( $postID ).'\');"></div>';
+		$attachment_image = get_field('img_header');
+
+		//img header
+        echo '<div class="mb-3 post__container">
+				<img src="'.$attachment_image.'">
+			  </div>';
+
         echo '<h2 class="mb-1" style="color:#ff9500;font-size:40px;">'.$rows[0]->post_title.'</h2>';
         echo '<small class="text-secondary"><span class="dashicons dashicons-clock"></span>&nbsp;<b>'.date('d.m.Y', strtotime($rows[0]->post_date)).'</b></small>';
         echo '<small class="text-secondary">&nbsp;&nbsp;articolo di <em>' . $autore . '</em></small><br>';
         $categories = get_the_category($postID);
         $tags = get_the_tags($postID);
         
-        echo '<small class="text-secondary cats"><span class="dashicons dashicons-archive"></span>&nbsp;<strong>categorie:</strong> ';
+        echo '<small class="text-secondary cats mb-2 d-inline-block"><span class="dashicons dashicons-archive"></span>&nbsp;<strong>categorie:</strong> ';
         foreach ($categories as $key => $value) {
             echo '<a style="color:#ff9500;" href="' . get_category_link($value->term_id) . '"><strong>' . $value->name . '</strong></a>';
             if ($value->term_id > 1 && $key !== (count($categories) - 1)) {
@@ -41,7 +47,7 @@ get_header();
 				<div class="d-flex flex-wrap">
 				<span class="dashicons dashicons-tag"></span>&nbsp;<strong>tags:&nbsp;&nbsp;</strong> ';
         foreach ($tags as $key => $value) {
-            echo '<span style="border:1.5px solid #ff9500;color:#ff9500;padding:2px 8px;border-radius:3px;border-top-right-radius:6px;margin-right:4px;white-space:nowrap;margin-bottom:.5rem;"><em>#' . $value->name . '</em></span>';
+            echo '<span style="border:1.5px solid #ff9500;color:#ff9500;padding:2px 8px;border-radius:3px;border-top-right-radius:6px;margin-right:4px;white-space:nowrap;margin-bottom:.5rem;font-size: 12px;font-weight: bold;"><em>#' . $value->name . '</em></span>';
             // if ($value->term_id > 1 && $key !== (count($tags) - 1)) {
             //     echo '&nbsp;|&nbsp;';
             // }
@@ -54,7 +60,7 @@ get_header();
         // var_dump($rows);
         echo '</div>';
 
-        // ULTIMI ARTICOLI
+        // SIDEBAR ULTIMI ARTICOLI
         echo '<div id="ermipost-lastposts" class="py-5 text-right">';
 
             echo '<div class="last-posts ml-auto" style="display:inline-block;text-align:left">';

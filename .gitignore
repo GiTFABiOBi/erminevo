@@ -1,0 +1,15 @@
+# Cache WordPress
+/cache/
+
+# File temporanei degli aggiornamenti
+/upgrade/
+
+# WP Toolkit - componente gestito dall'hosting
+/mu-plugins/wp-toolkit/
+/mu-plugins/wp-toolkit.php
+
+# File di sistema macOS
+.DS_Store
+
+# Video del tema ErmiTheme - gestiti separatamente
+/themes/ErmiTheme/video/

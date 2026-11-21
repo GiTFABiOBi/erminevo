@@ -3,7 +3,7 @@ Theme Name: ErmiTheme
 Description: Tema Customizzato per Compagnia Teatrale basato sul tema Genesis.
 Author: Fabio Basile
 
-Version: 5.5.35
+Version: 5.5.36
 
 Tags: accessibility-ready, block-styles, custom-colors, custom-logo, custom-menu, editor-style, featured-images, footer-widgets, full-width-template, left-sidebar, one-column, right-sidebar, rtl-language-support, sticky-post, theme-options, threaded-comments, translation-ready, two-columns, wide-blocks
 
@@ -2354,12 +2354,12 @@ a.ermibtn:hover {
 	margin: 0 auto;
 }
 #ermipost-template .post__container {
-	height:150px;
-	border:1px solid #eee;
-	border-radius:3px;
-	background-size:cover;
-	background-position:center;
-	background-repeat: no-repeat;
+	border: 1px solid #eee;
+	border-radius: 7px;
+	overflow: hidden;
+}
+#ermipost-template .post__container img {
+	object-fit: cover;
 }
 #ermipost-lastposts {
 	width: 95%;
@@ -2392,7 +2392,7 @@ a[rel~="tag"] {
 #about p {
 	color: #fff;
     text-align: justify;
-    padding: 40px 10px;
+    /*padding: 40px 10px;*/
     font-size: calc(1.32rem + .3vw);
 	font-weight: 200;
 }
@@ -2640,6 +2640,10 @@ a[rel~="tag"] {
 .gallery-cont-m img {
 	width: 100px !important;
 	height: 100px !important;
+}
+.carousel-articles-container a {
+	border: 1px solid #e3e3e3;
+    border-radius: 5px;
 }
 .carousel-articles-container img,
 .gallery-container-d img {
@@ -3557,6 +3561,10 @@ a:active, a:focus {
 		font-size: 14px;
 	}
   
+	#ermipost-template .post__container {
+		border-radius: 15px;
+	}
+	
 	.entry-content h4 {
 		margin-bottom: 15px;
 	}
@@ -3652,9 +3660,6 @@ a:active, a:focus {
 	}
 	.flickity-button:hover {
 	  background: #ffffff4f!important;
-	}
-	#ermipost-template .post__container {
-		height:200px;
 	}
 	.img-post-box img {
 		max-width: 70%;
@@ -3776,9 +3781,6 @@ a:active, a:focus {
 	}
 	#ermipost-lastposts {
 		width: 20%;
-	}
-	#ermipost-template .post__container {
-		height:250px;
 	}
 }
 

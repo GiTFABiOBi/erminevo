@@ -43,14 +43,14 @@ $_currentDate = strtotime(date('Y-m-d H:i:s'));
       <p class="card-text text-justify w-100"><?= $rowData["sinossi"] ?></p>
     </div>
     <?php
-    // queries characters/actors
+    // QUERIES ATTORI/PERSONAGGI
     $queryC = $wpdb->prepare("SELECT * FROM {$wpdb->prefix}spettacoli_personaggi_interpreti WHERE id_spettacolo = %s", $rowData["ID"]);
     $characters = $wpdb->get_results($queryC, ARRAY_A);
     if ( $wpdb->last_error ) {
       echo 'wpdb error: ' . $wpdb->last_error;
     }
     $echoC = '';
-    // stores characters/actors
+    // STORES ATTORI/PERSONAGGI
     foreach ($characters as $char) {
       if ($char["ruolo"] == 'regista') {
         $echoC .= "<br><li><strong>Regia</strong> - ".$char["nome_cognome"]."</li>";
@@ -62,7 +62,7 @@ $_currentDate = strtotime(date('Y-m-d H:i:s'));
       }
       $echoC .= "<li><strong>".$char["personaggio_attivita"]."</strong> - ".$char["nome_cognome"]."</li>";
     }
-    // queries date
+    // QUERIES DATE
     $queryD = $wpdb->prepare("SELECT * FROM {$wpdb->prefix}spettacoli_data_localita WHERE id_spettacolo = %s", $rowData["ID"]);
     $dates = $wpdb->get_results($queryD, ARRAY_A);
     if ( $wpdb->last_error ) {
@@ -71,7 +71,7 @@ $_currentDate = strtotime(date('Y-m-d H:i:s'));
     $months = ["01" => "Gennaio","02" => "Febbraio","03" => "Marzo","04" => "Aprile","05" => "Maggio","06" => "Giugno","07" => "Luglio","08" => "Agosto","09" => "Settembre", "10" => "Ottobre","11" => "Novembre","12" => "Dicembre"];
     $m = "";
     $echoD = '';
-    // stores date
+    // STORES DATE
     foreach ($dates as $date) {
       $dateS = explode('-', $date["data_spettacolo"]);
       foreach ($months as $k => $v) {
@@ -91,16 +91,22 @@ $_currentDate = strtotime(date('Y-m-d H:i:s'));
 	  if ($date["debutto"] != "1" && $uri=='/non-ce-tempo-amore/' && $date["note"] == 'replica' && $strDateSHOW > $_currentDate) {
         $nctaStyle = 'style="font-size: 18px; font-weight: 700; color: #f95c37;"';
       }
-      /* if($uri=='/beyond-therapy/' && $d_l->data_spettacolo=='2023-10-21') {
+		
+		//echo "<pre style='color:#000;'>";var_dump($uri, $date, $d_l->data_spettacolo);echo "</pre>";
+		
+      /*if($uri=='/non-ce-tempo-amore/' && $date['data_spettacolo']=='2026-10-31') {
         $gtclass = 'gttext';
         echo '<div class="alertBiglietti justBtn">';
-      } */
-      $echoD .= '<li class="mb-3 '. $redText .'" '.$nctaStyle.'><strong>'. $dateS[2] . " " . $m . " " . $dateS[0] .'</strong>, ' . $date["localita"] . ' ' . ($date["debutto"] === "1" ? "(data di debutto)" : "") . '<br><small><em class="'.($gtclass!=""?$gtclass:"").'">' . ($date["note"] != 'replica' && $date["note"] != 'replica_past' ? $date["note"] : "") . '</em></small></li>';
-      /* if($uri=='/beyond-therapy/' && $d_l->data_spettacolo=='2023-10-21') {
-        $html .= "<a href='https://secure.webtic.it/angwt/webtic.aspx?pu=aHR0cHM6Ly93d3cud2VidGljLml0L2luZGV4Lmh0bSMvaG9tZT9hY3Rpb249bG9hZExvY2FsJmxvY2FsSWQ9NTU1Ng==&rnd=0.4744693918684473&lng=it&lid=5556&tpl=blue&lvs=bnVsbA==&kid=33&cc=W10=#/event/it/33/5556/386' target='_blank'><span class='ermilink' style='color:var(--ermiyellow);font-weight:600;font-size:16px;'>ACQUISTA I TUOI BIGLIETTI</span></a></div>";
-      } */
+      }*/
+		
+      $echoD .= '<li class="'.($uri=='/non-ce-tempo-amore/' && $date['data_spettacolo']=='2026-10-31' ? 'mb-1 ' : 'mb-3 ') . $redText .'" '.$nctaStyle.'><strong>'. $dateS[2] . " " . $m . " " . $dateS[0] .'</strong>, ' . $date["localita"] . ' ' . ($date["debutto"] === "1" ? "(data di debutto)" : "") . '<br><small><em class="'.($gtclass!=""?$gtclass:"").'">' . ($date["note"] != 'replica' && $date["note"] != 'replica_past' ? $date["note"] : "") . '</em></small></li>';
+		
+      if($uri=='/non-ce-tempo-amore/' && $date['data_spettacolo']=='2026-10-31') {
+        $echoD .= "<a href='https://forms.gle/BFpjCmDWCXDYwEuZ6' target='_blank'><span class='ermilink' style='color:var(--ermiyellow);font-weight:900;font-size:20px;'>PRENOTA IL TUO POSTO</span></a>";
+      }
+		
     }
-    // stores Press imgs
+    // STORES IMG ARTICOLI STAMPA(INSERIRE IMMAGINE NEL SEGUENTE PERCORSO: /wp-content/gallery/nome-spettacolo-press/nomeFile)
     $echoP = '';
     $dir = str_replace("/", "", $uri);
     $pathfile_p = $_SERVER["DOCUMENT_ROOT"].'/wp-content/gallery/'.$dir.'-press';
@@ -224,7 +230,7 @@ $_currentDate = strtotime(date('Y-m-d H:i:s'));
       <div class="d-flex flex-wrap">
         <div class="r_s_desktop col-4">
           <h5 class="mb-3">Rassegna Stampa</h5>
-          <div class="carousel-articles-container d-flex flex-wrap" style="height:auto;">
+          <div class="carousel-articles-container d-flex flex-wrap gap-2" style="height:auto;">
             <?= $echoP ?>
           </div>
         </div>

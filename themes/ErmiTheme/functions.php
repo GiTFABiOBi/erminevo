@@ -236,7 +236,7 @@ add_action('wp_head', 'add_font');
  }
  add_action( 'wp_enqueue_scripts', 'your_script_enqueue' );
 
- //carica  CDN Bootstrap nell'admin
+//carica  CDN Bootstrap nell'admin
 function wpdocs_enqueue_custom_admin_bootsrap() {
     wp_enqueue_script( 'bootstrap_js', 'https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js');
     wp_enqueue_style( 'bootstrap_css', 'https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css', false, NULL, 'all' );
@@ -362,13 +362,6 @@ function pagination_posts() {
 			LEFT JOIN wp_term_relationships tr
 			ON tr.term_taxonomy_id = tt.term_taxonomy_id
 			WHERE tt.taxonomy = 'category' AND tr.object_id = " . $post->ID . ";" ), ARRAY_A );
-			$cats = [];
-			foreach ($categories as $key => $val) {
-				foreach ($val as $k => $v) {
-					$cats[] = $v;
-				}
-			}
-			$cat = implode('|', $cats);
 			
 			$thumbM = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), 'medium' );
 			$date = substr($post->post_date, 0, 10);
@@ -382,10 +375,21 @@ function pagination_posts() {
 			
 					$msg .= '</div>';
 					$msg .= '<div class="card-body col-8 col-lg-7 p-2 pl-3">';
-						$msg .= '<small class="d-flex flex-column mb-2 text-secondary"><span class="d-flex align-items-center me-2"><span class="dashicons dashicons-clock"></span>&nbsp;<span style="font-size:12px;">' . $format = date("d.m.Y", strtotime($date)) . '</span></span>
-						<span class="d-flex align-items-center">
-							<span class="dashicons dashicons-archive"></span>&nbsp;
-							<span style="font-size: 12px;">' . $cat . '</span>
+						$msg .= '<small class="d-flex flex-column mb-2 text-secondary"><span class="d-flex align-items-center me-2"><span class="dashicons dashicons-clock "></span>&nbsp;<span style="font-size:12px;">' . $format = date("d.m.Y", strtotime($date)) . '</span></span>
+						<span class="d-flex align-items-center gap-1">
+							<span class="dashicons dashicons-archive col-2"></span>&nbsp;
+							<span style="font-size: 12px;" class="col-9 text-start">';
+
+							//CATEGORIE
+							$ix = 0;
+							foreach ($categories as $key => $_k) {
+								foreach ($_k as $name => $val) {
+					                 $msg .= '<span>'. $val . ( ($ix < count($categories) - 1) ? ' | ' : '') . '</span>';
+									$ix++;
+								} 
+			                }
+			
+						$msg .= '</span>
 						</span>
 						</small>';
 						$msg .= '<h4 class="card-title mb-0">' . $post->post_title . '</h4>';
@@ -517,3 +521,38 @@ add_action('admin_bar_menu', 'add_menu_functions_item_st', 93);
  * Shortcode per form "Contattaci" in Homepage.
  * shortcode da utilizzare: [contattaciForm]
  */
+
+
+
+
+//AGGIUNGE logo a pagina /wp-admin
+function my_login_styles() { ?>
+	<style type="text/css">
+		.login.login-action-login {
+			background: rgba(249,155,0,.65);
+		}
+		#login #loginform {
+			border-radius: 8px;
+		}
+		#login h1 a, .login h1 a {
+			background-image: url(<?= get_home_url() ?>/wp-content/uploads/2022/05/logo_header.png);
+			width: 250px;
+			height: 170px;
+			background-size: 235px;
+		}
+		#login #nav, .language-switcher {
+			display: none;
+		}
+		#login #backtoblog {
+			padding-left: 0;
+			font-size: 20px;
+		}
+		#login #backtoblog a {
+			color: #fff;
+		}
+		.login .privacy-policy-page-link {
+	        display: none;
+        }
+	</style>
+<?php }
+add_action( 'login_enqueue_scripts', 'my_login_styles' );

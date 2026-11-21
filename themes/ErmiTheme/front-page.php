@@ -23,9 +23,15 @@ $html = '<div class="container row mx-auto">';
 
               <?php foreach ($allShows as $kS => $vS) : ?>
                 <li class="splide__slide position-relative">
-                    <img src="<?= wp_get_attachment_image_url($vS["id_slide"]) ?>" alt="non c'è tempo, amore 2024">
+                    <img src="<?= wp_get_attachment_image_url($vS["id_slide"]) ?>" alt="non c'è tempo, amore 2026">
 					
-                  <?php if($kS == 0): ?><div class="title__inScena position-absolute">IN REPLICA Sabato 17 Gennaio 2026!</div><?php endif; ?>
+					
+					
+					
+					
+				  <!-- repliche ncta -->
+                  <?php if($kS == 0): ?><!--div class="title__inScena position-absolute">IN REPLICA Sabato 31 Ottobre 2026!<a href='https://forms.gle/BFpjCmDWCXDYwEuZ6' target='_blank'><span class='ermilink' style='color:#fff;font-weight:900;font-size: clamp(1rem, 0.5833rem + 2.0833vw, 1.875rem);display:block;margin-top:clamp(0.625rem, 0.0298rem + 2.9762vw, 1.875rem);margin-bottom: clamp(0.625rem, 0.9226rem + -1.4881vw, 0rem);text-align:right;'>PRENOTA IL TUO POSTO</span></a></div-->
+      }<?php endif; ?><!-- repliche ncta -->
 					
                   <div class="title__show position-absolute">
                     <?= $vS["titolo"] ?><br>
@@ -57,7 +63,7 @@ $html = '<div class="container row mx-auto">';
   </section>
 
   <section id="about" class="page-section py-section"><!-- sezione ermiStoria -->
-    <div class="container sez_2 px-0">
+    <div class="container sez_2 px-2">
 
 		<div class="row mx-0 w-100">
 			<div class="sez_2_tit mb-5 col-lg-12 text-center px-0 w-100">
@@ -76,6 +82,13 @@ $html = '<div class="container row mx-auto">';
 			</div>
 		</div>
 
+		<!-- repliche ncta -->
+		<style>
+			.current-show .locandina::after {
+				background-color: var(--ermiyellow);
+				animation: pulse-ring 2.5s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+			}
+		</style>
 		<!-- current show -->
 		<div class="cont-flip">
 			<div class="cont-show current-show d-flex align-items-center">
@@ -89,7 +102,9 @@ $html = '<div class="container row mx-auto">';
 				</div>
 				<div class="_right position-relative">
 					
-					<div class="inScena_sub"><span>IN REPLICA: 17 Gennaio 2026</span></div>
+					<!-- repliche ncta -->
+					<!--div class="inScena_sub"><span>IN REPLICA: 31 Ottobre 2026</span></div-->
+					<!-- repliche ncta -->
 					
 					<div class="titolo-show">
 						<h3 class="mb-0 subheading"><?= html_entity_decode(htmlentities($currentshow["titolo"])) ?></h3>
@@ -142,110 +157,135 @@ $html = '<div class="container row mx-auto">';
   </div>
   </div>
   <div class="row">
-  <div class="col-6 col-md-4 mb-5">
-  <div class="team-member text-center">
-  <div class="img-container-1 mx-auto mr-md-auto position-relative">
-  <img class="mx-auto rounded-circle" src="https://www.erminevo.it/wp-content/uploads/2020/07/marianna.jpg" />
-  <div class="overSocial position-absolute">
-  <a href="https://www.instagram.com/marianna_sabadini/" target="_blank" class="text-center w-100" rel="noopener noreferrer"><span class="dashicons dashicons-instagram text-white"></span></a>
-  </div>
-  </div>
-  <h4 class="mt-3">Marianna Sabadini</h4>
-  </div>
-  </div>
-  <div class="col-6 col-md-4 mb-5">
-    <div class="team-member text-center">
-    <div class="img-container-2 mx-auto ml-md-auto position-relative">
-    <img class="mx-auto rounded-circle" src="https://www.erminevo.it/wp-content/uploads/2025/11/emanuela.png" />
-    <div class="overSocial position-absolute">
-    <a href="https://www.facebook.com/emanuela.sanzogni" target="_blank" rel="noopener noreferrer"><span class="dashicons dashicons-facebook text-white"></span></a>
-    <a href="https://www.instagram.com/emanuelasanzogni/" target="_blank" rel="noopener noreferrer"><span class="dashicons dashicons-instagram text-white"></span></a>
-    </div>
-    </div>
-    <h4 class="mt-3">Emanuela Sanzogni</h4>
-    </div>
-  </div>
-  <div class="col-6 col-md-4 mb-5">
-    <div class="team-member text-center">
-    <div class="img-container-2 mx-auto ml-md-auto position-relative">
-    <img class="mx-auto rounded-circle" src="https://www.erminevo.it/wp-content/uploads/2020/07/elisa2-1.jpg" />
-    <div class="overSocial position-absolute">
-		<a href="https://www.facebook.com/eli.ghidini" target="_blank" rel="noopener noreferrer"><span class="dashicons dashicons-facebook text-white"></span></a>
-    <a href="https://www.instagram.com/elisaghidini_/" target="_blank" rel="noopener noreferrer"><span class="dashicons dashicons-instagram text-white"></span></a>
-    </div>
-    </div>
-    <h4 class="mt-3">Elisa Ghidini</h4>
-    </div>
-  </div>
-  <div class="col-6 col-md-4 mb-5">
-    <div class="team-member text-center">
-    <div class="img-container-2 mx-auto mr-md-auto position-relative">
-    <img class="mx-auto rounded-circle" src="https://www.erminevo.it/wp-content/uploads/2020/07/serena.jpg" />
-    <div class="overSocial position-absolute">
-    <a href="https://www.facebook.com/sere.nella.391" target="_blank" class="text-center w-100" rel="noopener noreferrer"><span class="dashicons dashicons-facebook text-white"></span></a>
-    </div>
-    </div>
-    <h4 class="mt-3">Serena Zobbio</h4>
-    </div>
-  </div>
-  <div class="col-6 col-md-4">
-    <div class="team-member text-center">
-    <div class="img-container-2 mx-auto position-relative">
-    <img class="mx-auto rounded-circle text-center" src="https://www.erminevo.it/wp-content/uploads/2020/07/claudio.jpg" />
-    <div class="overSocial position-absolute">
-    <a href="https://www.facebook.com/claudio.garbelli.9" target="_blank" rel="noopener noreferrer"><span class="dashicons dashicons-facebook text-white"></span></a>
-    <a href="https://www.instagram.com/p/CCatyCklhMd/" target="_blank" rel="noopener noreferrer"><span class="dashicons dashicons-instagram text-white"></span></a>
-    </div>
-    </div>
-    <h4 class="mt-3">Claudio Garbelli</h4>
-    </div>
-  </div>
-  <div class="col-6 col-md-4">
-  <div class="team-member text-center">
-  <div class="img-container-2 mx-auto mr-md-auto position-relative">
-  <img class="mx-auto rounded-circle" src="https://www.erminevo.it/wp-content/uploads/2020/07/andrea.jpg" />
-  <div class="overSocial position-absolute">
-  <a href="https://www.facebook.com/andrea.tempini" target="_blank" rel="noopener noreferrer"><span class="dashicons dashicons-facebook text-white"></span></a>
-  <a href="https://www.instagram.com/atempini/" target="_blank" rel="noopener noreferrer"><span class="dashicons dashicons-instagram text-white"></span></a>
-  </div>
-  </div>
-  <h4 class="mt-3">Andrea Tempini</h4>
-  </div>
-  </div>
-  <div class="col-6 col-md-4">
-  <div class="team-member text-center">
-  <div class="img-container-2 mx-auto ml-md-auto position-relative">
-  <img class="mx-auto rounded-circle" src="https://www.erminevo.it/wp-content/uploads/2020/07/fabio2.jpg" />
-  <div class="overSocial position-absolute">
-  <a href="https://www.facebook.com/fabio.e.basile/" target="_blank" rel="noopener noreferrer"><span class="dashicons dashicons-facebook text-white"></span></a>
-  <a href="https://www.instagram.com/fabbio111/" target="_blank" rel="noopener noreferrer"><span class="dashicons dashicons-instagram text-white"></span></a>
-  </div>
-  </div>
-  <h4 class="mt-3">Fabio Basile</h4>
-  </div>
-  </div>
-  <div class="col-6 col-md-4 mb-5">
-    <div class="team-member text-center">
-    <div class="img-container-2 mx-auto mr-md-auto position-relative">
-    <img class="mx-auto rounded-circle" src="https://www.erminevo.it/wp-content/uploads/2020/07/pietro.jpg" />
-    <div class="overSocial position-absolute">
-    <p class="text-white mb-0 w-100" style="font-size: 100px;color: red !important;">&hearts;</p>
-    </div>
-    </div>
-    <h4 class="mt-3">Pietro Cometti</h4>
-    </div>
-  </div>
-  <div class="col-6 col-md-4 mb-5">
-    <div class="team-member text-center">
-    <div class="img-container-2 mx-auto position-relative">
-    <img class="mx-auto rounded-circle text-center" src="https://www.erminevo.it/wp-content/uploads/2020/07/massimo.jpg" />
-    <div class="overSocial position-absolute">
-    <a href="https://www.facebook.com/massimo.pedrotti.90" target="_blank" class="text-center w-100" rel="noopener noreferrer"><span class="dashicons dashicons-facebook text-white"></span></a>
-    </div>
-    </div>
-    <h4 class="mt-3">Massimo Pedrotti</h4>
-    </div>
-  </div>
+	  <div class="col-6 col-md-4 mb-5">
+		  <div class="team-member text-center">
+		  <div class="img-container-1 mx-auto mr-md-auto position-relative">
+		  <img class="mx-auto rounded-circle" src="https://www.erminevo.it/wp-content/uploads/2020/07/marianna.jpg" />
+		  <div class="overSocial position-absolute">
+		  <a href="https://www.instagram.com/marianna_sabadini/" target="_blank" class="text-center w-100" rel="noopener noreferrer"><span class="dashicons dashicons-instagram text-white"></span></a>
+		  </div>
+		  </div>
+		  <h4 class="mt-3">Marianna Sabadini</h4>
+		  </div>
+	  </div>
+	  <div class="col-6 col-md-4 mb-5">
+		<div class="team-member text-center">
+		<div class="img-container-2 mx-auto ml-md-auto position-relative">
+		<img class="mx-auto rounded-circle" src="https://www.erminevo.it/wp-content/uploads/2025/11/emanuela.png" />
+		<div class="overSocial position-absolute">
+		<a href="https://www.facebook.com/emanuela.sanzogni" target="_blank" rel="noopener noreferrer"><span class="dashicons dashicons-facebook text-white"></span></a>
+		<a href="https://www.instagram.com/emanuelasanzogni/" target="_blank" rel="noopener noreferrer"><span class="dashicons dashicons-instagram text-white"></span></a>
+		</div>
+		</div>
+		<h4 class="mt-3">Emanuela Sanzogni</h4>
+		</div>
+	  </div>
+	  <div class="col-6 col-md-4 mb-5">
+		  <div class="team-member text-center">
+		  <div class="img-container-2 mx-auto ml-md-auto position-relative">
+		  <img class="mx-auto rounded-circle" src="https://www.erminevo.it/wp-content/uploads/2020/07/fabio2.jpg" />
+		  <div class="overSocial position-absolute">
+		  <a href="https://www.facebook.com/fabio.e.basile/" target="_blank" rel="noopener noreferrer"><span class="dashicons dashicons-facebook text-white"></span></a>
+		  <a href="https://www.instagram.com/fabbio111/" target="_blank" rel="noopener noreferrer"><span class="dashicons dashicons-instagram text-white"></span></a>
+		  </div>
+		  </div>
+		  <h4 class="mt-3">Fabio Basile</h4>
+		  </div>
+	  </div>
+	  <div class="col-6 col-md-4 mb-5">
+		  <div class="team-member text-center">
+		  <div class="img-container-2 mx-auto mr-md-auto position-relative">
+		  <img class="mx-auto rounded-circle" src="https://www.erminevo.it/wp-content/uploads/2020/07/andrea.jpg" />
+		  <div class="overSocial position-absolute">
+		  <a href="https://www.facebook.com/andrea.tempini" target="_blank" rel="noopener noreferrer"><span class="dashicons dashicons-facebook text-white"></span></a>
+		  <a href="https://www.instagram.com/andreatempini" target="_blank" rel="noopener noreferrer"><span class="dashicons dashicons-instagram text-white"></span></a>
+		  </div>
+		  </div>
+		  <h4 class="mt-3">Andrea Tempini</h4>
+		  </div>
+	  </div>
+
+	  <div class="col-6 col-md-4 mb-5">
+		<div class="team-member text-center">
+		<div class="img-container-2 mx-auto ml-md-auto position-relative">
+		<img class="mx-auto rounded-circle" src="https://www.erminevo.it/wp-content/uploads/2020/07/elisa2-1.jpg" />
+		<div class="overSocial position-absolute">
+			<a href="https://www.facebook.com/eli.ghidini" target="_blank" rel="noopener noreferrer"><span class="dashicons dashicons-facebook text-white"></span></a>
+		<a href="https://www.instagram.com/elisaghidini_/" target="_blank" rel="noopener noreferrer"><span class="dashicons dashicons-instagram text-white"></span></a>
+		</div>
+		</div>
+		<h4 class="mt-3">Elisa Ghidini</h4>
+		</div>
+	  </div>
+	  <div class="col-6 col-md-4 mb-5">
+		<div class="team-member text-center">
+		<div class="img-container-2 mx-auto mr-md-auto position-relative">
+		<img class="mx-auto rounded-circle" src="https://www.erminevo.it/wp-content/uploads/2020/07/serena.jpg" />
+		<div class="overSocial position-absolute">
+		<a href="https://www.facebook.com/sere.nella.391" target="_blank" class="text-center w-100" rel="noopener noreferrer"><span class="dashicons dashicons-facebook text-white"></span></a>
+		</div>
+		</div>
+		<h4 class="mt-3">Serena Zobbio</h4>
+		</div>
+	  </div>
+	  <div class="col-6 col-md-4">
+		<div class="team-member text-center">
+		<div class="img-container-2 mx-auto position-relative">
+		<img class="mx-auto rounded-circle text-center" src="https://www.erminevo.it/wp-content/uploads/2020/07/claudio.jpg" />
+		<div class="overSocial position-absolute">
+		<a href="https://www.facebook.com/claudio.garbelli.9" target="_blank" rel="noopener noreferrer"><span class="dashicons dashicons-facebook text-white"></span></a>
+		<a href="https://www.instagram.com/garbelliclaudio" target="_blank" rel="noopener noreferrer"><span class="dashicons dashicons-instagram text-white"></span></a>
+		</div>
+		</div>
+		<h4 class="mt-3">Claudio Garbelli</h4>
+		</div>
+	  </div>
+	  <div class="col-6 col-md-4 mb-5">
+		  <div class="team-member text-center">
+		  <div class="img-container-2 mx-auto ml-md-auto position-relative">
+		  <img class="mx-auto rounded-circle" src="https://www.erminevo.it/wp-content/uploads/2025/10/alessandro-loda.jpg" />
+		  <div class="overSocial position-absolute">
+		  	<a href="https://www.facebook.com/alessandro.loda.9" target="_blank" rel="noopener noreferrer"><span class="dashicons dashicons-facebook text-white"></span></a>
+			<a href="https://www.instagram.com/_aleloda_" target="_blank" rel="noopener noreferrer"><span class="dashicons dashicons-instagram text-white"></span></a>
+		  </div>
+		  </div>
+		  <h4 class="mt-3">Alessandro Loda</h4>
+		  </div>
+	  </div>
+	  <div class="col-6 col-md-4 mb-5">
+		  <div class="team-member text-center">
+		  <div class="img-container-1 mx-auto mr-md-auto position-relative">
+		  <img class="mx-auto rounded-circle" src="https://www.erminevo.it/wp-content/uploads/2025/10/enrico-bragadina.jpg" />
+		  <div class="overSocial position-absolute">
+		  <a href="https://www.facebook.com/enrico.bragadina" target="_blank" class="text-center w-100" rel="noopener noreferrer"><span class="dashicons dashicons-facebook text-white"></span></a>
+		  </div>
+		  </div>
+		  <h4 class="mt-3">Enrico Bragadina</h4>
+		  </div>
+	  </div>
+  
+	  <div class="col-6 col-md-4 mb-5">
+		<div class="team-member text-center">
+		<div class="img-container-2 mx-auto mr-md-auto position-relative">
+		<img class="mx-auto rounded-circle" src="https://www.erminevo.it/wp-content/uploads/2020/07/pietro.jpg" />
+		<div class="overSocial position-absolute">
+		<p class="text-white mb-0 w-100" style="font-size: 100px;color: red !important;">&hearts;</p>
+		</div>
+		</div>
+		<h4 class="mt-3">Pietro Cometti</h4>
+		</div>
+	  </div>
+	  <div class="col-6 col-md-4 mb-5">
+		<div class="team-member text-center">
+		<div class="img-container-2 mx-auto position-relative">
+		<img class="mx-auto rounded-circle text-center" src="https://www.erminevo.it/wp-content/uploads/2020/07/massimo.jpg" />
+		<div class="overSocial position-absolute">
+		<a href="https://www.facebook.com/massimo.pedrotti.90" target="_blank" class="text-center w-100" rel="noopener noreferrer"><span class="dashicons dashicons-facebook text-white"></span></a>
+		</div>
+		</div>
+		<h4 class="mt-3">Massimo Pedrotti</h4>
+		</div>
+	  </div>
 
   </div>
   </div>
